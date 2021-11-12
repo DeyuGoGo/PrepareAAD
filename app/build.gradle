@@ -1,0 +1,163 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.secrets_gradle_plugin' version '0.5'
+}
+import libs.Libs
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "go.deyu.composesample"
+        minSdk 23
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+        viewBinding true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation "androidx.test.espresso:espresso-idling-resource:3.4.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+
+    implementation Libs.Kotlin.stdlib
+    implementation Libs.Coroutines.core
+    implementation Libs.Coroutines.android
+
+
+    implementation Libs.AndroidX.Activity.activityCompose
+    implementation Libs.AndroidX.coreKtx
+    implementation Libs.AndroidX.appcompat
+    implementation Libs.AndroidX.Lifecycle.livedata
+    implementation Libs.AndroidX.Lifecycle.viewModelCompose
+    implementation Libs.AndroidX.Lifecycle.viewModel
+    implementation Libs.AndroidX.Navigation.fragment
+    implementation Libs.AndroidX.Navigation.uiKtx
+    implementation Libs.material
+
+    implementation Libs.AndroidX.Compose.animation
+    implementation Libs.AndroidX.Compose.layout
+    implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.materialIconsExtended
+    implementation Libs.AndroidX.Compose.tooling
+    implementation Libs.AndroidX.Compose.uiUtil
+    implementation Libs.AndroidX.Compose.runtime
+    implementation Libs.AndroidX.Compose.runtimeLivedata
+    implementation Libs.AndroidX.Compose.viewBinding
+    implementation Libs.AndroidX.Compose.constraintlayout
+    implementation "androidx.navigation:navigation-compose:2.4.0-alpha10"
+
+    implementation Libs.Accompanist.insets
+    implementation Libs.Accompanist.pager
+    implementation Libs.Accompanist.permissions
+    implementation Libs.Accompanist.systemUiController
+
+//    RESTFul API
+    implementation Libs.Retrofit.retrofit
+    implementation Libs.Retrofit.retrofitCoroutinesAdapter
+    implementation Libs.Retrofit.retrofitMoshi
+    implementation Libs.Retrofit.retrofitLoggingInterceptor
+    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
+//    Json to Object
+    kapt Libs.Moshi.moshiKapt
+    implementation Libs.Moshi.moshi
+    implementation Libs.Moshi.moshiKotlin
+    implementation Libs.Moshi.moshiAdapter
+
+
+
+
+//   資料庫相關
+    kapt Libs.AndroidX.Room.kaptCompiler
+    implementation Libs.AndroidX.Room.ktx
+    implementation Libs.AndroidX.Room.common
+    implementation Libs.AndroidX.Room.runtime
+
+//     圖片處理
+    implementation Libs.Coil.coil
+    implementation Libs.Coil.coilCompose
+
+
+//    DI
+    implementation Libs.Hilt.hilt
+    kapt Libs.Hilt.hiltCompilerKapt
+    implementation Libs.Hilt.hiltLifecycleViewModel
+    kapt Libs.Hilt.hiltDaggerCompilerKapt
+    implementation Libs.Hilt.hiltNavigationCompose
+
+//    Work
+    implementation Libs.AndroidX.Work.work
+    implementation Libs.AndroidX.Work.mutiProcess
+
+
+//    Location
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+
+//    Testing
+    androidTestImplementation Libs.junit
+
+    androidTestImplementation Libs.AndroidX.AndroidTest.core
+    androidTestImplementation Libs.AndroidX.AndroidTest.rules
+    androidTestImplementation Libs.AndroidX.AndroidTest.archCore
+    androidTestImplementation Libs.AndroidX.AndroidTest.composeManifest
+    androidTestImplementation Libs.AndroidX.AndroidTest.composeUi
+    androidTestImplementation Libs.AndroidX.AndroidTest.composeUiJunit
+    androidTestImplementation Libs.AndroidX.AndroidTest.espressContrib
+    androidTestImplementation Libs.AndroidX.AndroidTest.espressoCore
+    androidTestImplementation Libs.AndroidX.AndroidTest.work
+
+    testImplementation Libs.junit
+    androidTestImplementation Libs.Hilt.Test.hilt
+    kaptAndroidTest Libs.Hilt.Test.hiltCompilerKapt
+    kaptAndroidTest Libs.Hilt.Test.hiltDaggerCompilerKapt
+
+    implementation 'com.google.guava:guava:29.0-android'
+}
