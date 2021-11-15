@@ -43,7 +43,7 @@ class NotificationsFragment : Fragment() {
                 button2.setOnClickListener {viewModel.notifyNotification(NotificationUtil.NotificationType.BUTTON)}
                 button3.setOnClickListener {viewModel.notifyNotification(NotificationUtil.NotificationType.REPLY)}
                 button4.setOnClickListener {viewModel.notifyNotification(NotificationUtil.NotificationType.PROGRESS(0))}
-                button5.setOnClickListener {viewModel.notifyNotification(NotificationUtil.NotificationType.BUTTON)}
+                button5.setOnClickListener {viewModel.notifyNotification(NotificationUtil.NotificationType.MESSAGE)}
             }
         }
     }
