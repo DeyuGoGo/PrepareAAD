@@ -81,5 +81,65 @@ Channel : Android8.0以上必須先建立Channel才能打通知，使用者可�
 
 RemoteInput：用來建立輸入型態的通知，類似聊天軟體那種。
 
-### 
+BigTextStyle, which can display a large block of text, such as showing the contents of an email when expanded.
+BigPictureStyle, which shows large-format notifications that include a large image attachment.
+InboxStyle, which shows a conversation style text content.
+MediaStyle, which shows controls for media playback.
+MessagingStyle, which shows large-format notifications that include multiple messages between any number of people.
+
+
+### DataStore - SharePerference 取代方案 // 我猜目前還不是考題
+DataStore的優勢是，
+1. 可以確保IO時不是在 主線程。
+2. 可以把Value用 Flow或者是asLiveData的方式去監聽變化，讓你的UI跟你的SP 是一致的。
+
+
+使用 inline，行內函數到呼叫的地方，能減少函式呼叫造成的額外開銷，在迴圈中尤其有效
+使用 inline 能避免函式的 lambda 形參額外建立 Function 物件
+使用 noinline 可以拒絕形參 lambda 內聯
+使用 crossinline 顯示宣告 inline 函式的形參 lambda 不能有 return 語句，避免lambda 中的 return 影響外部程式流
+
+### Testing
+
+幾個關鍵名詞
+Large Test - 10%
+Medium Test - 20%
+Small Test - 70%
+
+Robolectric 是一個為 Android 帶來快速可靠的單元測試的框架。 測試在幾秒鐘內在您的工作站上的 JVM 內運行。 使用 Robolectric，您可以編寫如下測試：
+
+```
+@RunWith(RobolectricTestRunner.class)
+public class MyActivityTest {
+
+  @Test
+  public void clickingButton_shouldChangeMessage() {
+    MyActivity activity = Robolectric.setupActivity(MyActivity.class);
+
+    activity.button.performClick();
+
+    assertThat(activity.message.getText()).isEqualTo("Robolectric Rocks!");
+  }
+}
+```
+
+Espresso：方便你模擬UI的一些動作做測試，也可以使用Record的方式把操作記錄下來當做測試。
+
+hamcrest：方便做判斷測試的一些function 。 ex: closeTo (這個已經在Androidx那包裡面了)
+
+## 測試Double使用的專有名詞
+Fake ：
+A test double that has a "working" implementation of the class, but it's implemented in a way that makes it good for tests but unsuitable for production.
+
+Mock：
+A test double that tracks which of its methods were called. It then passes or fails a test depending on whether it's methods were called correctly.
+
+Stub：
+A test double that includes no logic and only returns what you program it to return. A StubTaskRepository could be programmed to return certain combinations of tasks from getTasks for example.
+
+Dummy：
+A test double that is passed around but not used, such as if you just need to provide it as a parameter. If you had a NoOpTaskRepository, it would just implement the TaskRepository with no code in any of the methods.
+
+Spy
+A test double which also keeps tracks of some additional information; for example, if you made a SpyTaskRepository, it might keep track of the number of times the addTask method was called.
 

@@ -14,6 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeSample">
         <activity
+            android:name=".topic.androidcore.userinterface.MyDrawerActivity"
+            android:exported="true"
+            android:label="@string/title_activity_my_drawer"
+            android:theme="@style/Theme.ComposeSample.NoActionBar" />
+        <activity
             android:name=".topic.androidcore.TopicAndroidActivity"
             android:exported="true"
             android:label="@string/title_activity_topic_android" />
@@ -31,6 +36,9 @@
             android:exported="true" />
         <activity
             android:name=".blog.WorkerSampleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".topic.androidcore.test.CalcActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
